@@ -8,9 +8,13 @@ export interface Partner {
   detailedBio: string;
   experience: string[];
   email: string;
+  imageAlt?: string;
 }
 
 export interface CarouselItem {
   title: string;
   subtitle: string;
+  image: 
+  string;
+  imageAlt?: string;
 }

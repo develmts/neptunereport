@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HeroCarousel from '../components/HeroCarousel.vue';
+import HeroCarousel from '../components/Carousel.vue';
 import { PARTNERS } from '../constants';
 import { ArrowRight, ShieldCheck, FileSearch, Gavel } from 'lucide-vue-next';
 
@@ -38,7 +38,7 @@ const services = [
           We translate maritime chaos into <span class="text-marine-400">forensic certainty</span>.
         </h2>
         <p class="text-marine-300 text-lg font-light leading-relaxed max-w-3xl mx-auto">
-          Meridian Forensics bridges the gap between the raw reality of the engine room and the clinical precision of the courtroom. We are not just surveyors; we are the architects of truth in maritime disputes.
+          Neptune Reports bridges the gap between the raw reality of the engine room and the clinical precision of the courtroom. We are not just surveyors; we are the architects of truth in maritime disputes.
         </p>
       </div>
     </section>
