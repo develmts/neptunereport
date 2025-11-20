@@ -57,16 +57,16 @@ const isCurrent = (path: string) => route.path === path;
         >Home</router-link>
         
         <router-link 
-          to="/portfolio/sterling" 
+          to="/portfolio/trasmonte" 
           class="nav-link"
-          :class="{ 'active': isCurrent('/portfolio/sterling') }"
-        >Sterling</router-link>
+          :class="{ 'active': isCurrent('/portfolio/trasmonte') }"
+        >Trasmonte</router-link>
         
         <router-link 
-          to="/portfolio/vance" 
+          to="/portfolio/lopez" 
           class="nav-link"
-          :class="{ 'active': isCurrent('/portfolio/vance') }"
-        >Vance</router-link>
+          :class="{ 'active': isCurrent('/portfolio/lopez') }"
+        >López</router-link>
         
         <router-link 
           to="/contact" 

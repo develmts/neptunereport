@@ -36,7 +36,7 @@ const initials = computed(() => partner.value ? partner.value.name.split(' ').ma
       <div class="md:col-span-7 flex flex-col justify-center">
         <div class="flex items-center space-x-4 mb-6">
             <div class="h-px w-12 bg-rebel"></div>
-            <span class="text-rebel font-mono text-sm uppercase tracking-widest">Dossier #00{{ partner.id === 'sterling' ? '1' : '2' }}</span>
+            <span class="text-rebel font-mono text-sm uppercase tracking-widest">Dossier #00{{ partner.id === 'trasmonte' ? '1' : '2' }}</span>
         </div>
         
         <h1 class="text-5xl md:text-7xl font-serif text-white mb-4">{{ partner.name }}</h1>

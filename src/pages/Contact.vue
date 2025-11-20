@@ -12,6 +12,7 @@ const form = ref({
 const handleSubmit = () => {
     // Mock submission
     alert('Secure transmission initialized.');
+    
 };
 </script>
 
