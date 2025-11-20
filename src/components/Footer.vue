@@ -15,7 +15,7 @@ import { Anchor } from 'lucide-vue-next';
             <div class="p-1 border border-marine-400/50 transform rotate-45 group-hover:rotate-90 transition-transform duration-500">
                <Anchor class="w-4 h-4 text-marine-400 transform -rotate-45 group-hover:-rotate-90 transition-transform duration-500" />
             </div>
-            <span class="font-serif font-bold text-slate-200 tracking-widest">MERIDIAN</span>
+            <span class="font-serif font-bold text-slate-200 tracking-widest">Neptune</span>
           </router-link>
           <p class="text-marine-300 text-sm max-w-xs leading-relaxed">
             Defining the standard in marine forensic investigation and expert witness services.
@@ -23,11 +23,11 @@ import { Anchor } from 'lucide-vue-next';
         </div>
 
         <div class="flex flex-col md:flex-row gap-8 text-sm tracking-widest text-marine-300 font-mono">
-           <router-link to="/portfolio/sterling" class="hover:text-marine-400 transition-colors flex items-center gap-2">
-             <span class="text-rebel opacity-0 hover:opacity-100 transition-opacity">>></span> STERLING
+           <router-link to="/portfolio/lopez" class="hover:text-marine-400 transition-colors flex items-center gap-2">
+             <span class="text-rebel opacity-0 hover:opacity-100 transition-opacity">>></span> LOPEZ
            </router-link>
-           <router-link to="/portfolio/vance" class="hover:text-marine-400 transition-colors flex items-center gap-2">
-             <span class="text-rebel opacity-0 hover:opacity-100 transition-opacity">>></span> VANCE
+           <router-link to="/portfolio/Trasmonte" class="hover:text-marine-400 transition-colors flex items-center gap-2">
+             <span class="text-rebel opacity-0 hover:opacity-100 transition-opacity">>></span> TRASMONTE
            </router-link>
            <router-link to="/contact" class="hover:text-marine-400 transition-colors flex items-center gap-2">
              <span class="text-rebel opacity-0 hover:opacity-100 transition-opacity">>></span> CONTACT
@@ -36,8 +36,8 @@ import { Anchor } from 'lucide-vue-next';
       </div>
       
       <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 font-mono">
-        <p>&copy; {{ new Date().getFullYear() }} Meridian Forensics. All rights reserved.</p>
-        <p class="mt-2 md:mt-0">EST. 2012 // LONDON // SINGAPORE</p>
+        <p>&copy; {{ new Date().getFullYear() }} Neptune Reports. All rights reserved.</p>
+        <p class="mt-2 md:mt-0">EST. 2012 // Barcelona // Copenhague</p>
       </div>
     </div>
   </footer>

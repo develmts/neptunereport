@@ -1,5 +1,5 @@
 {
-  "name": "meridian-forensics",
+  "name": "neptune-report",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,17 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "framer-motion": "^12.23.24",
-    "lucide-react": "^0.554.0",
-    "react-router-dom": "^7.9.6",
-    "vue-router": "^4.6.3",
-    "vue": "^3.5.24"
+    "@vitejs/plugin-vue": "^6.0.2",
+    "lucide-vue-next": "^0.554.0",
+    "vue": "^3.5.24",
+    "vue-router": "^4.6.3"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }

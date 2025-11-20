@@ -40,10 +40,10 @@ const isCurrent = (path: string) => route.path === path;
         </div>
         <div class="flex flex-col">
           <span class="font-serif text-xl font-bold tracking-widest text-slate-100 leading-none">
-            MERIDIAN
+            NEPTUNE
           </span>
           <span class="text-[0.6rem] uppercase tracking-[0.3em] text-marine-400 mt-1 font-mono">
-            Forensics
+            Reports
           </span>
         </div>
       </router-link>
