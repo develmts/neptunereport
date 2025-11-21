@@ -1,7 +1,7 @@
 {
   "name": "neptune-report",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "start": "serve -s dist -l 4090",
@@ -21,5 +21,4 @@
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }
-  
 }
