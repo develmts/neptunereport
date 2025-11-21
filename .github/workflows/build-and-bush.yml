@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/neptunereport  # owner/repo
+  IMAGE_NAME: ${{ github.repository_owner }}/neptunereport
 
 jobs:
   build-and-push:
@@ -22,6 +22,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Node (for reading package.json)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Read version from package.json
+        id: pkg
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Detected version: $VERSION"
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
@@ -37,8 +49,9 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=latest
-            type=ref,event=branch
-            type=ref,event=tag
+            type=raw,value=${{ steps.pkg.outputs.version }}
+          labels: |
+            org.opencontainers.image.version=${{ steps.pkg.outputs.version }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
