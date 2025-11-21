@@ -1,20 +1,21 @@
 version: "3.9"
 
 services:
-  app:
-  image : ghcr.io/develmts/neptunereport:latest
-  working_dir: /usr/src/app
-  volumes:
-    - neptune-data:/usr/src/app
-  environment:
-    GIT_REPO_URL: https://github.com/develmts/neptunereport.git
-    GIT_BRANCH: "main"    
-    NODE_ENV: production
-  ports:
-    - "4090:3000"
-  restart: unless-stopped
-  networks:
-    - services  
+  neptunereport:
+    container_name: neptunereport
+    image: ghcr.io/develmts/neptunereport:latest
+    working_dir: /usr/src/app
+    volumes:
+      - /srv/docker/neptune/neptune-data:/usr/src/app
+    environment:
+      GIT_REPO_URL: https://github.com/develmts/neptunereport.git
+      GIT_BRANCH: "main"    
+      NODE_ENV: production      
+    ports:
+      - "4090:3000"
+    restart: unless-stopped
+    networks:
+      - services  
 volumes:
   myapp-volume:
 
