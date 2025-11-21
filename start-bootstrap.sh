@@ -3,6 +3,7 @@ set -e
 
 APP_DIR="/usr/src/app"
 IMAGE_COPY_DIR="/image-app"
+HASH_FILE=".package_hash"
 
 echo "--------------------------------------------------"
 echo "  Bootstrap: sync app from image to volume"
@@ -11,15 +12,34 @@ echo "APP_DIR: $APP_DIR"
 echo "IMAGE_COPY_DIR: $IMAGE_COPY_DIR"
 echo "--------------------------------------------------"
 
-# Si no hi ha package.json al volum, assumim que NO s'ha desplegat la app
-if [ ! -f "$APP_DIR/package.json" ]; then
-  echo "[BOOT] No package.json in $APP_DIR → initial (or forced) copy from image"
+IMAGE_HASH="none"
+VOLUME_HASH="none"
+
+# Hash que ve CUIT a la imatge
+if [ -f "$IMAGE_COPY_DIR/$HASH_FILE" ]; then
+  IMAGE_HASH=$(cat "$IMAGE_COPY_DIR/$HASH_FILE")
+fi
+
+# Hash que hi ha al volum (si existeix)
+if [ -f "$APP_DIR/$HASH_FILE" ]; then
+  VOLUME_HASH=$(cat "$APP_DIR/$HASH_FILE")
+fi
+
+echo "[BOOT] Image hash:  $IMAGE_HASH"
+echo "[BOOT] Volume hash: $VOLUME_HASH"
+
+# Si el volum no té hash o és diferent → imatge nova → refresquem tot
+if [ "$IMAGE_HASH" != "$VOLUME_HASH" ]; then
+  echo "[BOOT] Detected new image version → refreshing app volume"
   mkdir -p "$APP_DIR"
-  # Esborrem contingut previ al volum per evitar barrejes rares
+
+  # Netejar contingut antic del volum
   rm -rf "$APP_DIR"/* "$APP_DIR"/.[!.]* "$APP_DIR"/..?* 2>/dev/null || true
+
+  # Copiar contingut de la imatge cap al volum
   cp -R "$IMAGE_COPY_DIR"/. "$APP_DIR"/
 else
-  echo "[BOOT] package.json already present in $APP_DIR → skipping copy"
+  echo "[BOOT] Same version hash → keeping existing volume contents"
 fi
 
 cd "$APP_DIR"
