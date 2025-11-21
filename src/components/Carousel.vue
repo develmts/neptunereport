@@ -2,12 +2,12 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { ChevronLeft, ChevronRight, Compass } from 'lucide-vue-next';
 import { CAROUSEL_ITEMS } from '../constants';
-import {cdn} from '../utils/cdn';
+import { cdn } from '../utils/cdn';
 
 const currentIndex = ref(0);
 const direction = ref<'next' | 'prev'>('next');
 let timer: number | null = null;
-let milliseconds= 30000
+let milliseconds = 30000;
 
 const nextSlide = () => {
   direction.value = 'next';
@@ -20,7 +20,6 @@ const prevSlide = () => {
 };
 
 const setIndex = (idx: number) => {
-  // Direcció basada en la diferència d’índex (simple i suficient per un carrusel circular)
   direction.value = idx > currentIndex.value ? 'next' : 'prev';
   currentIndex.value = idx;
   resetTimer();
@@ -38,6 +37,55 @@ onMounted(() => {
 onUnmounted(() => {
   if (timer) clearInterval(timer);
 });
+
+/**
+ * Touch handling per a mòbil
+ */
+const touchStartX = ref<number | null>(null);
+const touchStartY = ref<number | null>(null);
+const touchDeltaX = ref(0);
+const SWIPE_THRESHOLD = 50; // píxels mínims per considerar-ho swipe
+
+const onTouchStart = (e: TouchEvent) => {
+  if (e.touches.length !== 1) return;
+  const t = e.touches[0];
+  touchStartX.value = t.clientX;
+  touchStartY.value = t.clientY;
+  touchDeltaX.value = 0;
+};
+
+const onTouchMove = (e: TouchEvent) => {
+  if (touchStartX.value === null || touchStartY.value === null) return;
+  const t = e.touches[0];
+  const dx = t.clientX - touchStartX.value;
+  const dy = t.clientY - touchStartY.value;
+
+  // Si és molt més horitzontal que vertical, evitem scroll vertical
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+    e.preventDefault();
+  }
+
+  touchDeltaX.value = dx;
+};
+
+const onTouchEnd = () => {
+  if (touchStartX.value === null) return;
+
+  if (Math.abs(touchDeltaX.value) > SWIPE_THRESHOLD) {
+    if (touchDeltaX.value < 0) {
+      // swipe cap a l'esquerra → següent
+      nextSlide();
+    } else {
+      // swipe cap a la dreta → anterior
+      prevSlide();
+    }
+    resetTimer();
+  }
+
+  touchStartX.value = null;
+  touchStartY.value = null;
+  touchDeltaX.value = 0;
+};
 </script>
 
 <template>
@@ -69,7 +117,17 @@ onUnmounted(() => {
         </button>
 
         <!-- CONTENT AREA: 2 columnes asimètriques -->
-        <div class="w-full md:w-4/5 relative h-80 flex flex-col items-center justify-center overflow-hidden">
+        <div
+          class="w-full md:w-4/5 relative 
+                 h-auto min-h-[18rem] md:h-80 
+                 flex flex-col 
+                 items-start md:items-center 
+                 justify-center 
+                 overflow-visible md:overflow-hidden"
+          @touchstart.passive="onTouchStart"
+          @touchmove="onTouchMove"
+          @touchend="onTouchEnd"
+        >
           <transition :name="direction === 'next' ? 'slide-left' : 'slide-right'" mode="out-in">
             <div 
               :key="currentIndex" 

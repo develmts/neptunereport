@@ -92,8 +92,8 @@ const isCurrent = (path: string) => route.path === path;
     <transition name="slide-fade">
       <div v-if="isOpen" class="md:hidden absolute top-full left-0 w-full bg-marine-900 border-b border-marine-800 flex flex-col items-center py-12 space-y-8 shadow-2xl">
         <router-link to="/" @click="closeMenu" class="mobile-link">Home</router-link>
-        <router-link to="/portfolio/sterling" @click="closeMenu" class="mobile-link">Capt. Sterling</router-link>
-        <router-link to="/portfolio/vance" @click="closeMenu" class="mobile-link">Dr. Vance</router-link>
+        <router-link to="/portfolio/trasmonte" @click="closeMenu" class="mobile-link">Capt. Trasmonte</router-link>
+        <router-link to="/portfolio/lopez" @click="closeMenu" class="mobile-link">PhD. Lopez</router-link>
         <router-link to="/contact" @click="closeMenu" class="mobile-link">Contact</router-link>
       </div>
     </transition>
